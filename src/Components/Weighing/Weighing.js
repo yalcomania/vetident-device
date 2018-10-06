@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import ScaleData from '../ScaleData/ScaleData'
 import RfIdData from '../RfIdData/RfIdData'
 import WebSocketHelper from '../../Helpers/WebSocketHelper/WebSocketHelper'
