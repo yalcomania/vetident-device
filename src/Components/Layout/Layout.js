@@ -1,9 +1,11 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import Weighing from '../Weighing/Weighing';
 
 class Layout extends Component{
     render(){
         return (
-            <p>Layout</p>
+            <Weighing></Weighing>
+
             );
     }
 }
