@@ -14,12 +14,21 @@ class Weighing extends Component {
 
     state = {
         message: null,
-        weight:0
+        weight:0,
+        rfId:null
     }
 
-    NewWeightHasComeHandler= (weight) => {
-
-        this.setState({weight:(+weight).toFixed(2)})
+    MessageRecievedHandler= (data) => {
+        var packetObj=JSON.parse(data);
+        if(packetObj.type==="rfId"){
+            var rfId=packetObj.payload.rfId;
+            this.setState({rfId:rfId})
+        }
+        else if(packetObj.type==="weight"){
+            var weight=(+weight).toFixed(2);
+            this.setState({weight:weight})
+        }
+        
     }
 
     render() {
@@ -33,9 +42,9 @@ class Weighing extends Component {
                     <ScaleData weight={this.state.weight}></ScaleData>
                 </Card>
                 <Card title="Elektronik Küpe">
-                    <RfIdData></RfIdData>
+                    <RfIdData rfId={this.state.rfId}></RfIdData>
                 </Card>
-                <WebSocketHelper newWeightHasCome={this.NewWeightHasComeHandler}></WebSocketHelper>
+                <WebSocketHelper onMessageRecieved={this.MessageRecievedHandler}></WebSocketHelper>
                 <button className="SaveButton">Kaydet</button>
             </div>
         )

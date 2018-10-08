@@ -7,11 +7,11 @@ class WebSocketHelper extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount2");
-    this.connection = new WebSocket('ws://192.168.1.21:40510');
+    console.log("componentDidMount");
+    this.connection = new WebSocket('ws://'+window.location.hostname+':40510');
     this.connection.onmessage = evt => {
       console.log(evt.data);
-      this.props.newWeightHasCome(evt.data);
+      this.props.onMessageRecieved(evt.data);
       this.setState({
         messages: this.state.messages.concat([evt.data])
       })

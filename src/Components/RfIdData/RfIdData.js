@@ -5,7 +5,7 @@ class RfIdData extends Component{
     render(){
         return (
             <div className="RfIdData">
-                76201350012345
+                {this.props.rfId}
             </div>
         )
     }
