@@ -25,7 +25,7 @@ class Weighing extends Component {
             this.setState({rfId:rfId})
         }
         else if(packetObj.type==="weight"){
-            var weight=(+weight).toFixed(2);
+            var weight=(+packetObj.payload.weight).toFixed(2);
             this.setState({weight:weight})
         }
         
