@@ -13,6 +13,12 @@
     z-index: 90;
 }
 
+.Toolbar>div{
+    color:white;
+    font-size:24px;
+    font-weight: bold;
+}
+
 .Toolbar nav {
     height: 100%;
 }

@@ -4,7 +4,11 @@ import './Toolbar.css'
 class Header extends Component{
     render(){
         return (
-        <header className="Toolbar"></header>
+        <header className="Toolbar">
+        <div></div>
+        <div>Vetident</div>
+        <div></div>
+        </header>
         )
     }
 }
