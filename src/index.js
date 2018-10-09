@@ -7,13 +7,24 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './store/reducer';
+import AlertTemplate from 'react-alert-template-basic'
+import { Provider as AlertProvider } from 'react-alert'
 
 const store = createStore(reducer);
+
+const options = {
+    position: 'top center',
+    timeout: 3000,
+    offset: '110px',
+    transition: 'scale'
+  }
 
 const app = (
     <Provider store={store}>
         <BrowserRouter>
-            <App />
+            <AlertProvider template={AlertTemplate} {...options}>
+                <App />
+            </AlertProvider>
         </BrowserRouter>
     </Provider>
 );

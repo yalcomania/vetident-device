@@ -6,6 +6,7 @@ import Card from '../../hoc/Card/Card'
 import './Weighing.css'
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
+import { withAlert } from 'react-alert'
 
 class Weighing extends Component {
 
@@ -14,6 +15,7 @@ class Weighing extends Component {
         this.refWebSocket = React.createRef();
     }
 
+    
     state = {
         message: null,
         weight:0,
@@ -43,10 +45,16 @@ class Weighing extends Component {
         };
 
         this.props.onRecordAdded(record);
+
+        this.props.alert.success('Kaydınız başarıyla gerçekleşmiştir.')
     }
 
     render() {
+       
+
         return (
+           
+  
             <div>
                 <div className="WeighingTitle">
                     <h1>HAYVAN TARTIMI</h1>
@@ -61,6 +69,7 @@ class Weighing extends Component {
                 <WebSocketHelper onMessageRecieved={this.MessageRecievedHandler}></WebSocketHelper>
                 <button onClick={this.AddNewRecordHandler} className="SaveButton">Kaydet</button>
             </div>
+   
         )
     }
 }
@@ -77,4 +86,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Weighing);
+export default connect(mapStateToProps, mapDispatchToProps)(withAlert(Weighing));
