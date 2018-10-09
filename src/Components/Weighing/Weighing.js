@@ -4,6 +4,8 @@ import RfIdData from '../RfIdData/RfIdData'
 import WebSocketHelper from '../../Helpers/WebSocketHelper/WebSocketHelper'
 import Card from '../../hoc/Card/Card'
 import './Weighing.css'
+import { connect } from 'react-redux';
+import * as actionTypes from '../../store/actions';
 
 class Weighing extends Component {
 
@@ -31,6 +33,18 @@ class Weighing extends Component {
         
     }
 
+    
+
+    AddNewRecordHandler = () => {
+        const record={
+            date:new Date(),
+            rfId:this.state.rfId,
+            weight:this.state.weight
+        };
+
+        this.props.onRecordAdded(record);
+    }
+
     render() {
         return (
             <div>
@@ -45,10 +59,22 @@ class Weighing extends Component {
                     <RfIdData rfId={this.state.rfId}></RfIdData>
                 </Card>
                 <WebSocketHelper onMessageRecieved={this.MessageRecievedHandler}></WebSocketHelper>
-                <button className="SaveButton">Kaydet</button>
+                <button onClick={this.AddNewRecordHandler} className="SaveButton">Kaydet</button>
             </div>
         )
     }
 }
 
-export default Weighing;
+const mapStateToProps = state => {
+    return {
+        records: state.records,
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onRecordAdded: (record) => dispatch({type: actionTypes.ADD_HISTORY, record: record})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Weighing);
