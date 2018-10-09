@@ -1,14 +1,21 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './Toolbar.css'
+import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle'
+import NavigationItems from '../NavigationItems/NavigationItems'
 
-class Header extends Component{
-    render(){
+class Header extends Component {
+    render() {
         return (
-        <header className="Toolbar">
-        <div></div>
-        <div>Vetident</div>
-        <div></div>
-        </header>
+
+            <header className="Toolbar">
+                <DrawerToggle clicked={this.props.drawerToggleClicked} />
+                <div className="Logo">
+                    Vetident
+                </div>
+                <nav className="DesktopOnly">
+                    <NavigationItems />
+                </nav>
+            </header>
         )
     }
 }
